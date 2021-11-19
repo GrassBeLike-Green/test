@@ -73,7 +73,7 @@ printf ("\n"); // TODO : Complete this part
    You can assume that the user input must be an integer. */
 void placeMarkByHumanPlayer(int gameBoard[6][7], int mark) {
 
-    int place=0;
+    int place = 0;
     scanf("%d", &place);
 
     while (place < 1 || place > 7){
@@ -97,9 +97,9 @@ void placeMarkByHumanPlayer(int gameBoard[6][7], int mark) {
 /* Return 1 if there is a winner in the game, otherwise return 0.
    Note: the winner is the current player indicated in main(). */
 int hasWinner (int gameBoard[6][7]){
-
-    //horizontal, condition 1
-  for (int i = 0; i < 6; i++){
+//Human vs Human
+//horizontal, condition 1
+for (int i = 0; i < 6; i++){
 
     //for O
     for (int j = 0; j < 4; j++){
@@ -132,7 +132,7 @@ int hasWinner (int gameBoard[6][7]){
       }
     }
   }
-    //rigth diagonal, condition 3
+    //right diagonal, condition 3
   for (int i = 0; i < 3; i++){
     for (int j = 0; j < 4; j++){
 
@@ -166,7 +166,82 @@ int hasWinner (int gameBoard[6][7]){
     }
   }
   return 0;
-}// TODO : Complete this part
+}
+
+
+int hasWinnerVsComputer(int gameBoard[6][7]){
+//Human vs my dumb AI
+//horizontal, condition 1
+for (int i = 0; i < 6; i++){
+
+    //for O
+    for (int j = 0; j < 4; j++){
+      if (gameBoard[i][j] == 1 && gameBoard[i][j] == gameBoard[i][j+1] && gameBoard[i][j] == gameBoard[i][j+2] && gameBoard[i][j] == gameBoard[i][j+3]){
+        printf ("Congratulations! Player 1 wins!");
+        return 1;
+      }
+    //for X
+      if (gameBoard[i][j] == 2 && gameBoard[i][j] == gameBoard[i][j+1] && gameBoard[i][j] == gameBoard[i][j+2] && gameBoard[i][j] == gameBoard[i][j+3]){
+        printf ("Computer wins!");
+        return 1;
+      }
+    }
+
+  }
+    //vertical, condition 2
+  for (int i = 0; i < 3; i++){
+    for (int j = 0; j < 7; j++){
+
+    //for O
+      if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j] && gameBoard[i][j]==gameBoard[i+2][j] && gameBoard[i][j]==gameBoard[i+3][j]){
+        printf("Congratulations! Player 1 wins!");
+        return 1;
+      }
+
+    //for X
+      if (gameBoard[i][j] == 2 && gameBoard[i][j]==gameBoard[i+1][j] && gameBoard[i][j]==gameBoard[i+2][j] && gameBoard[i][j]==gameBoard[i+3][j]){
+        printf("Computer wins!");
+        return 1;
+      }
+    }
+  }
+    //right diagonal, condition 3
+  for (int i = 0; i < 3; i++){
+    for (int j = 0; j < 4; j++){
+
+    //for O
+      if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j+1] && gameBoard[i][j]==gameBoard[i+2][j+2] && gameBoard[i][j]==gameBoard[i+3][j+3]){
+        printf("Congratulations! Player 1 wins!");
+        return 1;
+      }
+
+    //for X
+      if (gameBoard[i][j] == 2 && gameBoard[i][j]==gameBoard[i+1][j+1] && gameBoard[i][j]==gameBoard[i+2][j+2] && gameBoard[i][j]==gameBoard[i+3][j+3]){
+        printf("Computer wins!");
+        return 1;
+      }
+    }
+  }
+    //left diagonal, condition 4
+  for (int i = 0; i < 3; i++){
+    for (int j = 3; j < 10; j++){
+
+    //for O
+      if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j-1] && gameBoard[i][j]==gameBoard[i+2][j-2] && gameBoard[i][j]==gameBoard[i+3][j-3]){
+        printf("Congratulations! Player 1 wins!");
+        return 1;
+      }
+    //for X
+      if (gameBoard[i][j] == 2 && gameBoard[i][j]==gameBoard[i+1][j-1] && gameBoard[i][j]==gameBoard[i+2][j-2] && gameBoard[i][j]==gameBoard[i+3][j-3]){
+        printf("Computer wins!");
+        return 1;
+      }
+    }
+  }
+  return 0;
+}
+
+// TODO : Complete this part
 
 
 
@@ -186,10 +261,10 @@ int isFull(int gameBoard[6][7]) {
 /* Determine the next move of the computer player.
    You are required to exactly follow the strategy mentioned in the project specification.
    Using other strategies will result in mark deduction. */
+void placeMarkByComputerPlayer(int gameBoard[6][7], int mark) {
 
-// TODO : Write the placeMarkByComputerPlayer(...) function here
 
-
+}// TODO : Write the placeMarkByComputerPlayer(...) function here
 
 /* The main function */
 int main()
@@ -210,24 +285,54 @@ int main()
           // You can assume that the user input must be valid
 
 
-    if (numOfHumanPlayers == 1 || numOfHumanPlayers == 2){
+    if (numOfHumanPlayers == 2){
         // for (int i = 0; i < 10; i++){
-           while(gameContinue!=0){
+        while(gameContinue!=0){
             printGameBoard(gameBoard);
+
             if (hasWinner (gameBoard) == 1)
               break;
+
             if (isFull (gameBoard) == 1)
               printf ("Draw game. ");
+
             printf("Player 1's turn:\n");
             placeMarkByHumanPlayer(gameBoard, CIRCLE);
             printGameBoard(gameBoard);
+
             if (hasWinner (gameBoard) == 1)
               break;
+
             if (isFull (gameBoard) == 1)
               printf ("Draw game. ");
+
             printf("Player 2's turn:\n");
             placeMarkByHumanPlayer(gameBoard, CROSS);
         }
+    }
+    else if (numOfHumanPlayers == 1){
+        while(gameContinue!=0){
+            printGameBoard(gameBoard);
+
+            if (hasWinnerVsComputer (gameBoard) == 1)
+              break;
+
+            if (isFull (gameBoard) == 1)
+              printf ("Draw game. ");
+
+            printf("Player 1's turn:\n");
+            placeMarkByHumanPlayer(gameBoard, CIRCLE);
+            printGameBoard(gameBoard);
+
+            if (hasWinnerVsComputer (gameBoard) == 1)
+              break;
+
+            if (isFull (gameBoard) == 1)
+              printf ("Draw game. ");
+
+            printf ("Computer's turn: \n");
+            placeMarkByHumanPlayer(gameBoard, CROSS);
+
     }
 
 
@@ -240,4 +345,4 @@ int main()
     // TODO : Complete this part
 
     return 0;
-}
+}}
