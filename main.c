@@ -104,12 +104,10 @@ for (int i = 0; i < 6; i++){
     //for O
     for (int j = 0; j < 4; j++){
       if (gameBoard[i][j] == 1 && gameBoard[i][j] == gameBoard[i][j+1] && gameBoard[i][j] == gameBoard[i][j+2] && gameBoard[i][j] == gameBoard[i][j+3]){
-        printf ("Congratulations! Player 1 wins!");
         return 1;
       }
     //for X
       if (gameBoard[i][j] == 2 && gameBoard[i][j] == gameBoard[i][j+1] && gameBoard[i][j] == gameBoard[i][j+2] && gameBoard[i][j] == gameBoard[i][j+3]){
-        printf ("Congratulations! Player 2 wins!");
         return 1;
       }
     }
@@ -121,13 +119,11 @@ for (int i = 0; i < 6; i++){
 
     //for O
       if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j] && gameBoard[i][j]==gameBoard[i+2][j] && gameBoard[i][j]==gameBoard[i+3][j]){
-        printf("Congratulations! Player 1 wins!");
         return 1;
       }
 
     //for X
       if (gameBoard[i][j] == 2 && gameBoard[i][j]==gameBoard[i+1][j] && gameBoard[i][j]==gameBoard[i+2][j] && gameBoard[i][j]==gameBoard[i+3][j]){
-        printf("Congratulations! Player 2 wins!");
         return 1;
       }
     }
@@ -138,13 +134,11 @@ for (int i = 0; i < 6; i++){
 
     //for O
       if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j+1] && gameBoard[i][j]==gameBoard[i+2][j+2] && gameBoard[i][j]==gameBoard[i+3][j+3]){
-        printf("Congratulations! Player 1 wins!");
         return 1;
       }
 
     //for X
       if (gameBoard[i][j] == 2 && gameBoard[i][j]==gameBoard[i+1][j+1] && gameBoard[i][j]==gameBoard[i+2][j+2] && gameBoard[i][j]==gameBoard[i+3][j+3]){
-        printf("Congratulations! Player 2 wins!");
         return 1;
       }
     }
@@ -155,12 +149,10 @@ for (int i = 0; i < 6; i++){
 
     //for O
       if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j-1] && gameBoard[i][j]==gameBoard[i+2][j-2] && gameBoard[i][j]==gameBoard[i+3][j-3]){
-        printf("Congratulations! Player 1 wins!");
         return 1;
       }
     //for X
       if (gameBoard[i][j] == 2 && gameBoard[i][j]==gameBoard[i+1][j-1] && gameBoard[i][j]==gameBoard[i+2][j-2] && gameBoard[i][j]==gameBoard[i+3][j-3]){
-        printf("Congratulations! Player 2 wins!");
         return 1;
       }
     }
@@ -168,78 +160,6 @@ for (int i = 0; i < 6; i++){
   return 0;
 }
 
-
-int hasWinnerVsComputer(int gameBoard[6][7]){
-//Human vs my dumb AI
-//horizontal, condition 1
-for (int i = 0; i < 6; i++){
-
-    //for O
-    for (int j = 0; j < 4; j++){
-      if (gameBoard[i][j] == 1 && gameBoard[i][j] == gameBoard[i][j+1] && gameBoard[i][j] == gameBoard[i][j+2] && gameBoard[i][j] == gameBoard[i][j+3]){
-        printf ("Congratulations! Player 1 wins!");
-        return 1;
-      }
-    //for X
-      if (gameBoard[i][j] == 2 && gameBoard[i][j] == gameBoard[i][j+1] && gameBoard[i][j] == gameBoard[i][j+2] && gameBoard[i][j] == gameBoard[i][j+3]){
-        printf ("Computer wins!");
-        return 1;
-      }
-    }
-
-  }
-    //vertical, condition 2
-  for (int i = 0; i < 3; i++){
-    for (int j = 0; j < 7; j++){
-
-    //for O
-      if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j] && gameBoard[i][j]==gameBoard[i+2][j] && gameBoard[i][j]==gameBoard[i+3][j]){
-        printf("Congratulations! Player 1 wins!");
-        return 1;
-      }
-
-    //for X
-      if (gameBoard[i][j] == 2 && gameBoard[i][j]==gameBoard[i+1][j] && gameBoard[i][j]==gameBoard[i+2][j] && gameBoard[i][j]==gameBoard[i+3][j]){
-        printf("Computer wins!");
-        return 1;
-      }
-    }
-  }
-    //right diagonal, condition 3
-  for (int i = 0; i < 3; i++){
-    for (int j = 0; j < 4; j++){
-
-    //for O
-      if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j+1] && gameBoard[i][j]==gameBoard[i+2][j+2] && gameBoard[i][j]==gameBoard[i+3][j+3]){
-        printf("Congratulations! Player 1 wins!");
-        return 1;
-      }
-
-    //for X
-      if (gameBoard[i][j] == 2 && gameBoard[i][j]==gameBoard[i+1][j+1] && gameBoard[i][j]==gameBoard[i+2][j+2] && gameBoard[i][j]==gameBoard[i+3][j+3]){
-        printf("Computer wins!");
-        return 1;
-      }
-    }
-  }
-    //left diagonal, condition 4
-  for (int i = 0; i < 3; i++){
-    for (int j = 3; j < 10; j++){
-
-    //for O
-      if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j-1] && gameBoard[i][j]==gameBoard[i+2][j-2] && gameBoard[i][j]==gameBoard[i+3][j-3]){
-        printf("Congratulations! Player 1 wins!");
-        return 1;
-      }
-    //for X
-      if (gameBoard[i][j] == 2 && gameBoard[i][j]==gameBoard[i+1][j-1] && gameBoard[i][j]==gameBoard[i+2][j-2] && gameBoard[i][j]==gameBoard[i+3][j-3]){
-        printf("Computer wins!");
-        return 1;
-      }
-    }
-  }
-  return 0;
-}
 
 // TODO : Complete this part
 
@@ -290,8 +210,10 @@ int main()
         while(gameContinue!=0){
             printGameBoard(gameBoard);
 
-            if (hasWinner (gameBoard) == 1)
+            if (hasWinner (gameBoard) == 1){
+              printf ("Congratulations! Player 2 wins!");
               break;
+            }
 
             if (isFull (gameBoard) == 1)
               printf ("Draw game. ");
@@ -300,8 +222,10 @@ int main()
             placeMarkByHumanPlayer(gameBoard, CIRCLE);
             printGameBoard(gameBoard);
 
-            if (hasWinner (gameBoard) == 1)
+            if (hasWinner (gameBoard) == 1){
+              printf ("Congratulations! Player 1 wins!");
               break;
+            }
 
             if (isFull (gameBoard) == 1)
               printf ("Draw game. ");
@@ -314,8 +238,10 @@ int main()
         while(gameContinue!=0){
             printGameBoard(gameBoard);
 
-            if (hasWinnerVsComputer (gameBoard) == 1)
+            if (hasWinner (gameBoard) == 1){
+              printf ("Computer wins!");
               break;
+            }
 
             if (isFull (gameBoard) == 1)
               printf ("Draw game. ");
@@ -324,8 +250,10 @@ int main()
             placeMarkByHumanPlayer(gameBoard, CIRCLE);
             printGameBoard(gameBoard);
 
-            if (hasWinnerVsComputer (gameBoard) == 1)
+            if (hasWinner (gameBoard) == 1){
+              printf ("Congratulations! Player 1 wins!");
               break;
+            }
 
             if (isFull (gameBoard) == 1)
               printf ("Draw game. ");
