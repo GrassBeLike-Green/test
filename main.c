@@ -182,11 +182,72 @@ int isFull(int gameBoard[6][7]) {
    You are required to exactly follow the strategy mentioned in the project specification.
    Using other strategies will result in mark deduction. */
 void placeMarkByComputerPlayer(int gameBoard[6][7], int mark) {
+//both no win
+for (int i = 5; i >= 0; i--){
+  for (int j = 6; j >= 0; j--){
+    if (gameBoard[i][j] == 0){
+      gameBoard[i][j] = mark;
+      break;
+    }
+  }
+break;
+}
 
+//player winning condition1 horizontal
+  for (int i = 0; i < 6; i++){
+    for (int j = 0; j < 4; j++){
+      if (gameBoard[i][j] == 1 && gameBoard[i][j] == gameBoard[i][j+1] && gameBoard[i][j] == gameBoard[i][j+2]){
+        if (gameBoard[i][j+3] == 0){
+          gameBoard[i][j+3] = mark;
+        }
+      }
+      if (gameBoard[i][j] == 1 && gameBoard[i][j] == gameBoard[i][j+2] && gameBoard[i][j] == gameBoard[i][j+3]){
+        if (gameBoard[i][j+1] == 0){
+          gameBoard[i][j+1] = mark;
+        }
+      }
+      if (gameBoard[i][j+3] == 1 && gameBoard[i][j+3] == gameBoard[i][j+1] && gameBoard[i][+3] == gameBoard[i][j+2]){
+        if (gameBoard[i][j] == 0){
+          gameBoard[i][j] = mark;
+        }
+      }
+    }
+  }
+//Player winning condition2 vertical
+  for (int i = 0; i < 3; i++){
+    for (int j = 0; j < 7; j++){
+      if (gameBoard[i][j] == 1 && gameBoard[i][j] == gameBoard[i+1][j] && gameBoard[i+1][j] == gameBoard[i+2][j]){
+        if (gameBoard[i+3][j] == 0){
+          gameBoard[i+3][j] = mark;
+        }
+      }
+    }
+  }
+//Player winning condition3 right diagonal
+  for (int i = 0; i < 3; i++){
+    for (int j = 0; j < 4; j++){
+      if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j+1] && gameBoard[i][j]==gameBoard[i+2][j+2]){
+        if (gameBoard[i+3][j+3] == 0){
+          gameBoard[i+3][j+3] = mark;
+        }
+      }
+      if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j+1] && gameBoard[i][j]==gameBoard[i+3][j+3]){
+        if (gameBoard[i+2][j+2] == 0){
+          gameBoard[i+2][j+2] = mark;
+        }
+      }
+      if (gameBoard[i+2][j+2] == 1 && gameBoard[i][j]==gameBoard[i+1][j+1] && gameBoard[i][j]==gameBoard[i+3][j+3]){
+        if (gameBoard[i][j] == 0){
+          gameBoard[i][j] = mark;
+        }
+      }
+    }
+  }
+}
 
-}// TODO : Write the placeMarkByComputerPlayer(...) function here
+// TODO : Write the placeMarkByComputerPlayer(...) function here
 
-/* The main function */
+// The main function */
 int main()
 {
     /* Local variables */
@@ -259,10 +320,9 @@ int main()
               printf ("Draw game. ");
 
             printf ("Computer's turn: \n");
-            placeMarkByHumanPlayer(gameBoard, CROSS);
-
+            placeMarkByComputerPlayer(gameBoard, CROSS);
+          }
     }
-
 
     /* Game start
        If there are two human players, they are Player 1 and Player 2
@@ -273,4 +333,4 @@ int main()
     // TODO : Complete this part
 
     return 0;
-}}
+}
