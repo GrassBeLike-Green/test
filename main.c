@@ -77,8 +77,13 @@ void placeMarkByHumanPlayer(int gameBoard[6][7], int mark) {
     scanf("%d", &place);
 
     while (place < 1 || place > 7){
-    printf ("Input out of range. Please input again: ");
-    scanf("%d", &place);}
+      printf ("Input out of range. Please input again: \n");
+      scanf("%d", &place);}
+
+    while (gameBoard[0][place-1] != 0){
+      printf ("Column is full. Please input again: \n");
+      scanf ("%d", &place);
+      }
 
     for (int i = 5;  i>=0; i--){
         if (gameBoard[i][place-1] == 0){
@@ -86,12 +91,9 @@ void placeMarkByHumanPlayer(int gameBoard[6][7], int mark) {
                 break;
         }
     }
+}
 
-    if (gameBoard[0][place-1] != 0)
-      printf ("Column is full. Please input again: \n");
-
-
-  }  // TODO : Complete this part
+      // TODO : Complete this part
 
 
 /* Return 1 if there is a winner in the game, otherwise return 0.
@@ -145,7 +147,7 @@ for (int i = 0; i < 6; i++){
   }
     //left diagonal, condition 4
   for (int i = 0; i < 3; i++){
-    for (int j = 3; j < 10; j++){
+    for (int j = 3; j < 9; j++){
 
     //for O
       if (gameBoard[i][j] == 1 && gameBoard[i][j]==gameBoard[i+1][j-1] && gameBoard[i][j]==gameBoard[i+2][j-2] && gameBoard[i][j]==gameBoard[i+3][j-3]){
@@ -172,7 +174,6 @@ int isFull(int gameBoard[6][7]) {
     return 1;
   }
   else return 0;
-
 }
     // TODO : Complete this part
 
@@ -183,7 +184,7 @@ int isFull(int gameBoard[6][7]) {
    Using other strategies will result in mark deduction. */
 void placeMarkByComputerPlayer(int gameBoard[6][7], int mark) {
 //both no win
-for (int i = 5; i >= 0; i--){
+/*for (int i = 5; i >= 0; i--){
   for (int j = 6; j >= 0; j--){
     if (gameBoard[i][j] == 0){
       gameBoard[i][j] = mark;
@@ -191,7 +192,7 @@ for (int i = 5; i >= 0; i--){
     }
   }
 break;
-}
+}*/
 
 //player winning condition1 horizontal
   for (int i = 0; i < 6; i++){
@@ -276,8 +277,10 @@ int main()
               break;
             }
 
-            if (isFull (gameBoard) == 1)
+            if (isFull (gameBoard) == 1){
               printf ("Draw game. ");
+              break;
+            }
 
             printf("Player 1's turn:\n");
             placeMarkByHumanPlayer(gameBoard, CIRCLE);
@@ -288,8 +291,10 @@ int main()
               break;
             }
 
-            if (isFull (gameBoard) == 1)
+            if (isFull (gameBoard) == 1){
               printf ("Draw game. ");
+              break;
+            }
 
             printf("Player 2's turn:\n");
             placeMarkByHumanPlayer(gameBoard, CROSS);
@@ -304,8 +309,10 @@ int main()
               break;
             }
 
-            if (isFull (gameBoard) == 1)
+            if (isFull (gameBoard) == 1){
               printf ("Draw game. ");
+              break;
+            }
 
             printf("Player 1's turn:\n");
             placeMarkByHumanPlayer(gameBoard, CIRCLE);
@@ -316,8 +323,10 @@ int main()
               break;
             }
 
-            if (isFull (gameBoard) == 1)
+            if (isFull (gameBoard) == 1){
               printf ("Draw game. ");
+              break;
+            }
 
             printf ("Computer's turn: \n");
             placeMarkByComputerPlayer(gameBoard, CROSS);
